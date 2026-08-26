@@ -1,0 +1,6997 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>A Little Garden For You 🌷</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Patrick+Hand&display=swap"
+    rel="stylesheet"
+>
+
+
+<style>
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+
+    --cream: #fffaf0;
+    --cream-2: #fff4df;
+
+    --paper: #fffdf8;
+
+    --green: #6f9b68;
+    --green-dark: #426448;
+    --green-soft: #a9c99c;
+
+    --pink: #e99aaa;
+    --pink-soft: #f6c5ce;
+
+    --peach: #f4b78d;
+    --peach-soft: #ffd8bd;
+
+    --lavender: #b9a8d9;
+    --lavender-soft: #ded5ef;
+
+    --yellow: #e9c85c;
+    --yellow-soft: #f8e6a2;
+
+    --brown: #655044;
+    --brown-soft: #89776c;
+
+    --text: #4d4039;
+    --muted: #82736b;
+
+    --shadow:
+        0 25px 70px rgba(73, 55, 39, .18);
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+
+    box-sizing:
+        border-box;
+
+    margin:
+        0;
+
+    padding:
+        0;
+
+}
+
+html {
+
+    scroll-behavior:
+        smooth;
+
+}
+
+body {
+
+    min-height:
+        100vh;
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    color:
+        var(--text);
+
+    background:
+        linear-gradient(
+            180deg,
+            #fffaf1 0%,
+            #f8f2df 55%,
+            #edf4df 100%
+        );
+
+    overflow-x:
+        hidden;
+
+}
+
+button {
+
+    font-family:
+        inherit;
+
+}
+
+
+/* =========================================================
+   PAGE SYSTEM
+========================================================= */
+
+.page {
+
+    min-height:
+        100svh;
+
+    display:
+        none;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        50px 20px;
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+}
+
+.page.active {
+
+    display:
+        flex;
+
+}
+
+.container {
+
+    width:
+        100%;
+
+    max-width:
+        950px;
+
+    margin:
+        auto;
+
+    text-align:
+        center;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    position:
+        relative;
+
+    z-index:
+        10;
+
+}
+
+
+/* =========================================================
+   GARDEN BACKGROUND
+========================================================= */
+
+.garden-bg {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    pointer-events:
+        none;
+
+    z-index:
+        0;
+
+    overflow:
+        hidden;
+
+}
+
+
+/* =========================================================
+   SUN
+========================================================= */
+
+.sun {
+
+    position:
+        absolute;
+
+    width:
+        120px;
+
+    height:
+        120px;
+
+    border-radius:
+        50%;
+
+    top:
+        8%;
+
+    right:
+        8%;
+
+    background:
+        radial-gradient(
+            circle,
+            #fff7c9,
+            #f7dfa0 60%,
+            #efcc79
+        );
+
+    box-shadow:
+        0 0 70px
+        rgba(
+            239,
+            204,
+            121,
+            .35
+        );
+
+    animation:
+        sunFloat
+        6s
+        ease-in-out
+        infinite;
+
+}
+
+@keyframes sunFloat {
+
+    0%,100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-10px);
+
+    }
+
+}
+
+
+/* =========================================================
+   CLOUDS
+========================================================= */
+
+.cloud {
+
+    position:
+        absolute;
+
+    width:
+        150px;
+
+    height:
+        45px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .72
+        );
+
+    border-radius:
+        999px;
+
+    filter:
+        blur(.2px);
+
+    opacity:
+        .7;
+
+}
+
+.cloud::before,
+.cloud::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    background:
+        inherit;
+
+    border-radius:
+        50%;
+
+}
+
+.cloud::before {
+
+    width:
+        65px;
+
+    height:
+        65px;
+
+    left:
+        25px;
+
+    bottom:
+        10px;
+
+}
+
+.cloud::after {
+
+    width:
+        80px;
+
+    height:
+        80px;
+
+    right:
+        20px;
+
+    bottom:
+        5px;
+
+}
+
+.cloud-1 {
+
+    top:
+        13%;
+
+    left:
+        -20px;
+
+    animation:
+        cloudMove
+        35s
+        linear
+        infinite;
+
+}
+
+.cloud-2 {
+
+    top:
+        25%;
+
+    right:
+        -180px;
+
+    transform:
+        scale(.7);
+
+    animation:
+        cloudMoveReverse
+        45s
+        linear
+        infinite;
+
+}
+
+@keyframes cloudMove {
+
+    from {
+
+        transform:
+            translateX(-10vw);
+
+    }
+
+    to {
+
+        transform:
+            translateX(120vw);
+
+    }
+
+}
+
+@keyframes cloudMoveReverse {
+
+    from {
+
+        transform:
+            translateX(10vw)
+            scale(.7);
+
+    }
+
+    to {
+
+        transform:
+            translateX(-130vw)
+            scale(.7);
+
+    }
+
+}
+
+
+/* =========================================================
+   GROUND
+========================================================= */
+
+.ground {
+
+    position:
+        absolute;
+
+    bottom:
+        -35px;
+
+    left:
+        -5%;
+
+    width:
+        110%;
+
+    height:
+        150px;
+
+    background:
+        #dceac9;
+
+    border-radius:
+        50% 50% 0 0;
+
+}
+
+.ground::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        -30px;
+
+    left:
+        0;
+
+    width:
+        100%;
+
+    height:
+        65px;
+
+    background:
+        #c8dfb7;
+
+    border-radius:
+        50%;
+
+}
+
+
+/* =========================================================
+   FLOWERS
+========================================================= */
+
+.flower {
+
+    position:
+        absolute;
+
+    bottom:
+        4%;
+
+    font-size:
+        38px;
+
+    opacity:
+        .8;
+
+    animation:
+        flowerSway
+        4s
+        ease-in-out
+        infinite;
+
+    transform-origin:
+        bottom center;
+
+}
+
+.flower:nth-of-type(1) {
+
+    left:
+        8%;
+
+}
+
+.flower:nth-of-type(2) {
+
+    left:
+        22%;
+
+    font-size:
+        30px;
+
+    animation-delay:
+        .7s;
+
+}
+
+.flower:nth-of-type(3) {
+
+    right:
+        15%;
+
+    font-size:
+        45px;
+
+    animation-delay:
+        1.2s;
+
+}
+
+.flower:nth-of-type(4) {
+
+    right:
+        4%;
+
+    font-size:
+        30px;
+
+    animation-delay:
+        1.8s;
+
+}
+
+@keyframes flowerSway {
+
+    0%,100% {
+
+        transform:
+            rotate(-3deg);
+
+    }
+
+    50% {
+
+        transform:
+            rotate(4deg);
+
+    }
+
+}
+
+
+/* =========================================================
+   BUTTERFLIES
+========================================================= */
+
+.butterfly {
+
+    position:
+        absolute;
+
+    font-size:
+        27px;
+
+    opacity:
+        .7;
+
+    animation:
+        butterflyFly
+        15s
+        ease-in-out
+        infinite;
+
+}
+
+.butterfly-1 {
+
+    left:
+        8%;
+
+    top:
+        35%;
+
+}
+
+.butterfly-2 {
+
+    right:
+        15%;
+
+    top:
+        50%;
+
+    font-size:
+        22px;
+
+    animation-delay:
+        5s;
+
+}
+
+.butterfly-3 {
+
+    left:
+        55%;
+
+    top:
+        15%;
+
+    font-size:
+        20px;
+
+    animation-delay:
+        8s;
+
+}
+
+@keyframes butterflyFly {
+
+    0% {
+
+        transform:
+            translate(
+                0,
+                0
+            )
+            rotate(-8deg);
+
+    }
+
+    25% {
+
+        transform:
+            translate(
+                35px,
+                -25px
+            )
+            rotate(7deg);
+
+    }
+
+    50% {
+
+        transform:
+            translate(
+                80px,
+                10px
+            )
+            rotate(-4deg);
+
+    }
+
+    75% {
+
+        transform:
+            translate(
+                35px,
+                45px
+            )
+            rotate(8deg);
+
+    }
+
+    100% {
+
+        transform:
+            translate(
+                0,
+                0
+            )
+            rotate(-8deg);
+
+    }
+
+}
+
+
+/* =========================================================
+   FLOATING PETALS
+========================================================= */
+
+.petals {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    pointer-events:
+        none;
+
+    z-index:
+        1;
+
+}
+
+.petal {
+
+    position:
+        absolute;
+
+    top:
+        -30px;
+
+    font-size:
+        18px;
+
+    opacity:
+        .55;
+
+    animation:
+        petalFall
+        linear
+        infinite;
+
+}
+
+.petal:nth-child(1) {
+
+    left:
+        12%;
+
+    animation-duration:
+        13s;
+
+}
+
+.petal:nth-child(2) {
+
+    left:
+        30%;
+
+    animation-duration:
+        17s;
+
+    animation-delay:
+        3s;
+
+}
+
+.petal:nth-child(3) {
+
+    left:
+        54%;
+
+    animation-duration:
+        15s;
+
+    animation-delay:
+        6s;
+
+}
+
+.petal:nth-child(4) {
+
+    left:
+        76%;
+
+    animation-duration:
+        19s;
+
+    animation-delay:
+        1s;
+
+}
+
+.petal:nth-child(5) {
+
+    left:
+        90%;
+
+    animation-duration:
+        14s;
+
+    animation-delay:
+        5s;
+
+}
+
+@keyframes petalFall {
+
+    0% {
+
+        transform:
+            translateY(-30px)
+            rotate(0);
+
+    }
+
+    50% {
+
+        transform:
+            translate(
+                40px,
+                55vh
+            )
+            rotate(180deg);
+
+    }
+
+    100% {
+
+        transform:
+            translate(
+                -30px,
+                110vh
+            )
+            rotate(360deg);
+
+    }
+
+}
+
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+
+.script {
+
+    font-family:
+        "Patrick Hand",
+        cursive;
+
+}
+
+.title {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(
+            42px,
+            7vw,
+            76px
+        );
+
+    line-height:
+        1.05;
+
+    margin-bottom:
+        20px;
+
+    color:
+        var(--green-dark);
+
+}
+
+.subtitle {
+
+    font-size:
+        17px;
+
+    line-height:
+        1.8;
+
+    max-width:
+        620px;
+
+    margin:
+        0 auto 30px;
+
+    color:
+        var(--brown-soft);
+
+}
+
+.small-label {
+
+    font-size:
+        12px;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        4px;
+
+    color:
+        var(--green);
+
+    margin-bottom:
+        18px;
+
+    font-weight:
+        700;
+
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.main-btn {
+
+    border:
+        none;
+
+    padding:
+        14px 30px;
+
+    border-radius:
+        999px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green),
+            #92b47e
+        );
+
+    color:
+        white;
+
+    font-size:
+        15px;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+
+    transition:
+        .3s ease;
+
+    box-shadow:
+        0 10px 30px
+        rgba(
+            83,
+            122,
+            75,
+            .2
+        );
+
+}
+
+.main-btn:hover {
+
+    transform:
+        translateY(-4px)
+        scale(1.02);
+
+}
+
+.secondary-btn {
+
+    border:
+        1px solid
+        rgba(
+            86,
+            116,
+            78,
+            .25
+        );
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .65
+        );
+
+    color:
+        var(--green-dark);
+
+    padding:
+        12px 25px;
+
+    border-radius:
+        999px;
+
+    cursor:
+        pointer;
+
+    font-weight:
+        600;
+
+    transition:
+        .3s ease;
+
+}
+
+.secondary-btn:hover {
+
+    background:
+        white;
+
+    transform:
+        translateY(-3px);
+
+}
+
+
+/* =========================================================
+   PAGE 1 — OPENING
+========================================================= */
+
+.opening-card {
+
+    max-width:
+        680px;
+
+    padding:
+        55px 35px;
+
+    position:
+        relative;
+
+    z-index:
+        5;
+
+}
+
+.opening-flower {
+
+    width:
+        110px;
+
+    height:
+        110px;
+
+    margin:
+        0 auto 25px;
+
+    position:
+        relative;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        68px;
+
+    animation:
+        flowerFloat
+        4s
+        ease-in-out
+        infinite;
+
+}
+
+@keyframes flowerFloat {
+
+    0%,100% {
+
+        transform:
+            translateY(0)
+            rotate(-3deg);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-10px)
+            rotate(4deg);
+
+    }
+
+}
+
+
+/* =========================================================
+   ENVELOPE
+========================================================= */
+
+.envelope {
+
+    width:
+        230px;
+
+    height:
+        155px;
+
+    margin:
+        40px auto;
+
+    position:
+        relative;
+
+    cursor:
+        pointer;
+
+    transition:
+        .4s ease;
+
+    filter:
+        drop-shadow(
+            0 20px 30px
+            rgba(
+                73,
+                55,
+                39,
+                .2
+            )
+        );
+
+}
+
+.envelope:hover {
+
+    transform:
+        translateY(-7px)
+        rotate(-1deg);
+
+}
+
+.envelope-body {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e7a2af,
+            #d78396
+        );
+
+    border-radius:
+        10px;
+
+    overflow:
+        hidden;
+
+}
+
+.envelope-body::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    background:
+        linear-gradient(
+            135deg,
+            transparent 48%,
+            rgba(
+                255,
+                255,
+                255,
+                .25
+            ) 49%,
+            transparent 51%
+        );
+
+}
+
+.envelope-flap {
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        0;
+
+    height:
+        0;
+
+    border-left:
+        115px solid transparent;
+
+    border-right:
+        115px solid transparent;
+
+    border-top:
+        85px solid #efb0bc;
+
+    z-index:
+        3;
+
+    transform-origin:
+        top;
+
+    transition:
+        .8s ease;
+
+}
+
+.envelope-letter {
+
+    position:
+        absolute;
+
+    width:
+        185px;
+
+    height:
+        120px;
+
+    left:
+        22px;
+
+    bottom:
+        10px;
+
+    background:
+        var(--paper);
+
+    z-index:
+        2;
+
+    border-radius:
+        6px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-family:
+        "Patrick Hand",
+        cursive;
+
+    color:
+        var(--green-dark);
+
+    font-size:
+        25px;
+
+    transition:
+        .8s ease;
+
+}
+
+.envelope.open .envelope-flap {
+
+    transform:
+        rotateX(180deg);
+
+}
+
+.envelope.open .envelope-letter {
+
+    transform:
+        translateY(-80px);
+
+}
+
+
+/* =========================================================
+   PAGE 2 — BIRTHDAY
+========================================================= */
+
+.birthday-card {
+
+    max-width:
+        760px;
+
+    padding:
+        55px 30px;
+
+    position:
+        relative;
+
+    z-index:
+        5;
+
+}
+
+.birthday-flower {
+
+    font-size:
+        82px;
+
+    margin:
+        0 auto 20px;
+
+    display:
+        inline-block;
+
+    animation:
+        flowerFloat
+        3s
+        ease-in-out
+        infinite;
+
+}
+
+.name {
+
+    font-family:
+        "Patrick Hand",
+        cursive;
+
+    font-size:
+        clamp(
+            50px,
+            9vw,
+            90px
+        );
+
+    color:
+        var(--pink);
+
+    text-shadow:
+        0 8px 25px
+        rgba(
+            220,
+            126,
+            145,
+            .18
+        );
+
+    margin-bottom:
+        15px;
+
+}
+
+.cake {
+
+    font-size:
+        90px;
+
+    margin:
+        25px 0;
+
+    cursor:
+        pointer;
+
+    display:
+        inline-block;
+
+    transition:
+        .3s ease;
+
+}
+
+.cake:hover {
+
+    transform:
+        scale(1.12)
+        rotate(-3deg);
+
+}
+
+.wish-message {
+
+    display:
+        none;
+
+    font-family:
+        "Patrick Hand",
+        cursive;
+
+    font-size:
+        27px;
+
+    color:
+        var(--green-dark);
+
+    animation:
+        fadeUp
+        .7s
+        ease;
+
+}
+
+.wish-message.show {
+
+    display:
+        block;
+
+}
+
+
+/* =========================================================
+   PAGE 3 — MEMORIES
+========================================================= */
+
+.album-wrapper {
+
+    width:
+        100%;
+
+    max-width:
+        800px;
+
+    position:
+        relative;
+
+    z-index:
+        5;
+
+}
+
+.album-title {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(
+            38px,
+            6vw,
+            60px
+        );
+
+    margin-bottom:
+        10px;
+
+    color:
+        var(--green-dark);
+
+}
+
+.album-subtitle {
+
+    color:
+        var(--brown-soft);
+
+    margin-bottom:
+        30px;
+
+}
+
+.album {
+
+    background:
+        #fffaf0;
+
+    padding:
+        20px;
+
+    border-radius:
+        8px;
+
+    box-shadow:
+        var(--shadow);
+
+    transform:
+        rotate(-1deg);
+
+    color:
+        var(--text);
+
+    position:
+        relative;
+
+}
+
+.album::before {
+
+    content:
+        "MEMORIES";
+
+    position:
+        absolute;
+
+    top:
+        -15px;
+
+    left:
+        25px;
+
+    background:
+        var(--pink);
+
+    color:
+        white;
+
+    padding:
+        5px 14px;
+
+    font-family:
+        "Patrick Hand",
+        cursive;
+
+    transform:
+        rotate(-3deg);
+
+    box-shadow:
+        0 5px 15px
+        rgba(
+            0,
+            0,
+            0,
+            .1
+        );
+
+}
+
+.album-photo {
+
+    width:
+        100%;
+
+    aspect-ratio:
+        16 / 10;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--lavender-soft),
+            var(--pink-soft)
+        );
+
+    border:
+        9px solid white;
+
+    box-shadow:
+        0 10px 25px
+        rgba(
+            0,
+            0,
+            0,
+            .12
+        );
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        70px;
+
+    overflow:
+        hidden;
+
+}
+
+.album-photo img {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+}
+
+.memory-number {
+
+    font-family:
+        "Patrick Hand",
+        cursive;
+
+    color:
+        var(--pink);
+
+    font-size:
+        25px;
+
+    margin-top:
+        18px;
+
+}
+
+.memory-title {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        30px;
+
+    color:
+        var(--green-dark);
+
+    margin:
+        5px 0 10px;
+
+}
+
+.memory-caption {
+
+    line-height:
+        1.7;
+
+    max-width:
+        600px;
+
+    margin:
+        auto;
+
+    color:
+        var(--brown-soft);
+
+}
+
+.album-controls {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    gap:
+        15px;
+
+    margin-top:
+        30px;
+
+}
+
+.circle-btn {
+
+    width:
+        48px;
+
+    height:
+        48px;
+
+    border-radius:
+        50%;
+
+    border:
+        1px solid
+        rgba(
+            86,
+            116,
+            78,
+            .25
+        );
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .7
+        );
+
+    color:
+        var(--green-dark);
+
+    cursor:
+        pointer;
+
+    font-size:
+        20px;
+
+    transition:
+        .3s ease;
+
+}
+
+.circle-btn:hover {
+
+    background:
+        var(--green);
+
+    color:
+        white;
+
+    transform:
+        translateY(-3px);
+
+}
+
+
+/* =========================================================
+   PAGE 4 — LETTER
+========================================================= */
+
+.letter-wrapper {
+
+    width:
+        100%;
+
+    max-width:
+        720px;
+
+    position:
+        relative;
+
+    z-index:
+        5;
+
+}
+
+.letter-card {
+
+    position:
+        relative;
+
+    background:
+        var(--paper);
+
+    color:
+        var(--text);
+
+    padding:
+        55px 50px;
+
+    text-align:
+        left;
+
+    border-radius:
+        8px;
+
+    box-shadow:
+        var(--shadow);
+
+    transform:
+        rotate(.4deg);
+
+}
+
+.letter-card::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        13px;
+
+    border:
+        1px dashed
+        rgba(
+            111,
+            155,
+            104,
+            .35
+        );
+
+    pointer-events:
+        none;
+
+}
+
+.letter-card::after {
+
+    content:
+        "🌷";
+
+    position:
+        absolute;
+
+    top:
+        22px;
+
+    right:
+        30px;
+
+    font-size:
+        27px;
+
+}
+
+.letter-heading {
+
+    font-family:
+        "Patrick Hand",
+        cursive;
+
+    color:
+        var(--green-dark);
+
+    font-size:
+        32px;
+
+    margin-bottom:
+        25px;
+
+}
+
+.letter-text {
+
+    font-family:
+        "Patrick Hand",
+        cursive;
+
+    font-size:
+        24px;
+
+    line-height:
+        1.85;
+
+    min-height:
+        260px;
+
+    white-space:
+        pre-line;
+
+}
+
+.letter-signature {
+
+    margin-top:
+        30px;
+
+    font-family:
+        "Patrick Hand",
+        cursive;
+
+    color:
+        var(--pink);
+
+    font-size:
+        29px;
+
+    text-align:
+        right;
+
+}
+
+
+/* =========================================================
+   PAGE 5 — LITTLE THINGS
+========================================================= */
+
+.little-wrapper {
+
+    width:
+        100%;
+
+    max-width:
+        900px;
+
+    position:
+        relative;
+
+    z-index:
+        5;
+
+}
+
+.little-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:
+        22px;
+
+    margin:
+        35px 0;
+
+}
+
+
+/* =========================================================
+   FLIP CARD
+========================================================= */
+
+.little-card {
+
+    height:
+        330px;
+
+    position:
+        relative;
+
+    cursor:
+        pointer;
+
+    perspective:
+        1200px;
+
+    transition:
+        .45s ease;
+
+}
+
+.little-card-inner {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    transform-style:
+        preserve-3d;
+
+    transition:
+        transform .8s
+        cubic-bezier(
+            .2,
+            .75,
+            .25,
+            1
+        );
+
+}
+
+.little-card.flipped .little-card-inner {
+
+    transform:
+        rotateY(180deg);
+
+}
+
+.little-card-front,
+.little-card-back {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    border:
+        8px solid
+        #fffdf8;
+
+    background:
+        #fffdf8;
+
+    box-shadow:
+        0 18px 40px
+        rgba(
+            73,
+            55,
+            39,
+            .18
+        );
+
+    backface-visibility:
+        hidden;
+
+    -webkit-backface-visibility:
+        hidden;
+
+    overflow:
+        hidden;
+
+    border-radius:
+        8px;
+
+}
+
+
+/* =========================================================
+   FRONT
+========================================================= */
+
+.little-card-front {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    text-align:
+        center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #dfeacc,
+            #f7d6dc
+        );
+
+    color:
+        var(--green-dark);
+
+}
+
+.little-card-front::before {
+
+    content:
+        "🌸  🌿  🌷";
+
+    position:
+        absolute;
+
+    top:
+        20px;
+
+    left:
+        0;
+
+    right:
+        0;
+
+    font-size:
+        18px;
+
+    opacity:
+        .7;
+
+}
+
+.little-card-front::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        18px;
+
+    border:
+        1px dashed
+        rgba(
+            66,
+            100,
+            72,
+            .3
+        );
+
+    pointer-events:
+        none;
+
+}
+
+.little-front-content {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        20px;
+
+}
+
+.little-front-icon {
+
+    width:
+        75px;
+
+    height:
+        75px;
+
+    border-radius:
+        50%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    margin-bottom:
+        18px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .65
+        );
+
+    border:
+        1px solid
+        rgba(
+            66,
+            100,
+            72,
+            .2
+        );
+
+    font-size:
+        32px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(
+            73,
+            55,
+            39,
+            .1
+        );
+
+    animation:
+        mysteryFloat
+        3s
+        ease-in-out
+        infinite;
+
+}
+
+.little-card:nth-child(2)
+.little-front-icon {
+
+    animation-delay:
+        .5s;
+
+}
+
+.little-card:nth-child(3)
+.little-front-icon {
+
+    animation-delay:
+        1s;
+
+}
+
+@keyframes mysteryFloat {
+
+    0%,100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-7px);
+
+    }
+
+}
+
+.little-front-title {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        25px;
+
+    margin-bottom:
+        8px;
+
+    color:
+        var(--green-dark);
+
+}
+
+.little-front-text {
+
+    font-family:
+        "Patrick Hand",
+        cursive;
+
+    font-size:
+        20px;
+
+    color:
+        var(--brown-soft);
+
+}
+
+.little-front-number {
+
+    position:
+        absolute;
+
+    bottom:
+        22px;
+
+    right:
+        25px;
+
+    font-family:
+        "Patrick Hand",
+        cursive;
+
+    font-size:
+        19px;
+
+    color:
+        var(--pink);
+
+}
+
+
+/* =========================================================
+   BACK
+========================================================= */
+
+.little-card-back {
+
+    transform:
+        rotateY(180deg);
+
+    background:
+        #fffdf8;
+
+}
+
+.little-photo {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    overflow:
+        hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--lavender-soft),
+            var(--pink-soft)
+        );
+
+}
+
+.little-photo img {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+    display:
+        block;
+
+    transition:
+        .6s ease;
+
+}
+
+.little-card.flipped:hover
+.little-photo img {
+
+    transform:
+        scale(1.05);
+
+}
+
+.photo-number {
+
+    position:
+        absolute;
+
+    left:
+        12px;
+
+    bottom:
+        10px;
+
+    padding:
+        4px 10px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .9
+        );
+
+    color:
+        var(--green-dark);
+
+    font-family:
+        "Patrick Hand",
+        cursive;
+
+    font-size:
+        18px;
+
+    border-radius:
+        999px;
+
+    z-index:
+        5;
+
+}
+
+
+/* =========================================================
+   CARD HOVER
+========================================================= */
+
+.little-card:not(.flipped):hover {
+
+    transform:
+        translateY(-12px)
+        rotate(0)
+        scale(1.025);
+
+}
+
+.little-card:nth-child(1):not(.flipped) {
+
+    transform:
+        rotate(-3deg);
+
+}
+
+.little-card:nth-child(2):not(.flipped) {
+
+    transform:
+        rotate(2deg);
+
+}
+
+.little-card:nth-child(3):not(.flipped) {
+
+    transform:
+        rotate(-1deg);
+
+}
+
+.little-card.flipped {
+
+    transform:
+        translateY(-8px)
+        rotate(0);
+
+}
+
+.little-card.flipped:hover {
+
+    transform:
+        translateY(-12px)
+        scale(1.025);
+
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.little-progress {
+
+    font-family:
+        "Patrick Hand",
+        cursive;
+
+    font-size:
+        20px;
+
+    color:
+        var(--green-dark);
+
+    min-height:
+        30px;
+
+    margin-bottom:
+        5px;
+
+}
+
+.little-next {
+
+    opacity:
+        .4;
+
+    pointer-events:
+        none;
+
+}
+
+.little-next.ready {
+
+    opacity:
+        1;
+
+    pointer-events:
+        auto;
+
+}
+
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+
+.photo-lightbox {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    background:
+        rgba(
+            53,
+            67,
+            43,
+            .82
+        );
+
+    backdrop-filter:
+        blur(12px);
+
+    display:
+        none;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    z-index:
+        5000;
+
+    padding:
+        25px;
+
+    cursor:
+        pointer;
+
+}
+
+.photo-lightbox.show {
+
+    display:
+        flex;
+
+    animation:
+        fadeIn
+        .3s
+        ease;
+
+}
+
+.lightbox-content {
+
+    max-width:
+        900px;
+
+    max-height:
+        90vh;
+
+    position:
+        relative;
+
+    cursor:
+        default;
+
+}
+
+.lightbox-content img {
+
+    max-width:
+        100%;
+
+    max-height:
+        82vh;
+
+    object-fit:
+        contain;
+
+    border:
+        8px solid white;
+
+    box-shadow:
+        0 25px 70px
+        rgba(
+            0,
+            0,
+            0,
+            .35
+        );
+
+}
+
+.lightbox-close {
+
+    position:
+        absolute;
+
+    top:
+        -45px;
+
+    right:
+        0;
+
+    width:
+        40px;
+
+    height:
+        40px;
+
+    border:
+        none;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .2
+        );
+
+    color:
+        white;
+
+    font-size:
+        22px;
+
+    cursor:
+        pointer;
+
+}
+
+
+/* =========================================================
+   PAGE 6 — FIND THE FLOWER
+========================================================= */
+
+.flower-game-wrapper {
+
+    width:
+        100%;
+
+    max-width:
+        850px;
+
+    position:
+        relative;
+
+    z-index:
+        5;
+
+}
+
+.flower-game-title {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(
+            42px,
+            7vw,
+            68px
+        );
+
+    color:
+        var(--green-dark);
+
+    margin-bottom:
+        8px;
+
+}
+
+.flower-game-subtitle {
+
+    color:
+        var(--brown-soft);
+
+    margin-bottom:
+        25px;
+
+}
+
+.flower-score {
+
+    font-family:
+        "Patrick Hand",
+        cursive;
+
+    color:
+        var(--pink);
+
+    font-size:
+        24px;
+
+    margin-bottom:
+        15px;
+
+}
+
+.flower-field {
+
+    width:
+        100%;
+
+    height:
+        430px;
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    border-radius:
+        30px;
+
+    border:
+        1px solid
+        rgba(
+            86,
+            116,
+            78,
+            .18
+        );
+
+    background:
+        linear-gradient(
+            180deg,
+            #dcebd3,
+            #c7dfb5 55%,
+            #a9c994
+        );
+
+    box-shadow:
+        0 25px 70px
+        rgba(
+            73,
+            55,
+            39,
+            .15
+        );
+
+}
+
+.flower-field::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+        radial-gradient(
+            circle at 20% 25%,
+            rgba(
+                255,
+                255,
+                255,
+                .55
+            ),
+            transparent 10%
+        ),
+        radial-gradient(
+            circle at 75% 35%,
+            rgba(
+                255,
+                255,
+                255,
+                .4
+            ),
+            transparent 12%
+        );
+
+    pointer-events:
+        none;
+
+}
+
+.flower-game-item {
+
+    position:
+        absolute;
+
+    border:
+        none;
+
+    background:
+        transparent;
+
+    font-size:
+        24px;
+
+    cursor:
+        pointer;
+
+    padding:
+        12px;
+
+    transition:
+        .25s ease;
+
+    line-height:
+        1;
+
+    z-index:
+        5;
+
+}
+
+.flower-game-item:hover {
+
+    transform:
+        scale(1.45);
+
+}
+
+.flower-game-item.wrong {
+
+    animation:
+        wrongFlower
+        .4s
+        ease;
+
+}
+
+@keyframes wrongFlower {
+
+    0%,100% {
+
+        transform:
+            translateX(0);
+
+    }
+
+    25% {
+
+        transform:
+            translateX(-7px)
+            rotate(-10deg);
+
+    }
+
+    75% {
+
+        transform:
+            translateX(7px)
+            rotate(10deg);
+
+    }
+
+}
+
+.flower-game-item.correct {
+
+    font-size:
+        68px;
+
+    filter:
+        drop-shadow(
+            0 0 15px
+            rgba(
+                255,
+                220,
+                100,
+                .8
+            )
+        );
+
+    animation:
+        foundFlower
+        .8s
+        ease
+        forwards;
+
+    pointer-events:
+        none;
+
+}
+
+@keyframes foundFlower {
+
+    0% {
+
+        transform:
+            scale(.7);
+
+        opacity:
+            .5;
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.4);
+
+        opacity:
+            1;
+
+    }
+
+    100% {
+
+        transform:
+            scale(1.1);
+
+        opacity:
+            1;
+
+    }
+
+}
+
+.flower-game-success {
+
+    display:
+        none;
+
+    margin-top:
+        25px;
+
+    animation:
+        fadeUp
+        .7s
+        ease;
+
+}
+
+.flower-game-success.show {
+
+    display:
+        block;
+
+}
+
+.success-flower {
+
+    font-size:
+        65px;
+
+    margin-bottom:
+        10px;
+
+    animation:
+        finalFlower
+        2s
+        ease-in-out
+        infinite;
+
+}
+
+@keyframes finalFlower {
+
+    0%,100% {
+
+        transform:
+            scale(1)
+            rotate(-4deg);
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.12)
+            rotate(6deg);
+
+    }
+
+}
+
+.success-text {
+
+    font-family:
+        "Patrick Hand",
+        cursive;
+
+    font-size:
+        27px;
+
+    color:
+        var(--green-dark);
+
+    margin-bottom:
+        20px;
+
+}
+
+
+/* =========================================================
+   PAGE 7 — FINAL
+========================================================= */
+
+.final-card {
+
+    max-width:
+        800px;
+
+    padding:
+        50px 30px;
+
+    position:
+        relative;
+
+    z-index:
+        5;
+
+}
+
+
+/* =========================================================
+   FINAL INTRO
+========================================================= */
+
+.final-intro {
+
+    animation:
+        fadeUp
+        .9s
+        ease;
+
+}
+
+.final-flower {
+
+    font-size:
+        80px;
+
+    margin-bottom:
+        20px;
+
+    animation:
+        finalFlower
+        3s
+        ease-in-out
+        infinite;
+
+}
+
+.final-title {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(
+            40px,
+            7vw,
+            70px
+        );
+
+    margin-bottom:
+        5px;
+
+    color:
+        var(--green-dark);
+
+}
+
+.final-name {
+
+    font-family:
+        "Patrick Hand",
+        cursive;
+
+    color:
+        var(--pink);
+
+    font-size:
+        clamp(
+            50px,
+            9vw,
+            85px
+        );
+
+    margin-bottom:
+        25px;
+
+}
+
+.final-message {
+
+    max-width:
+        580px;
+
+    margin:
+        0 auto 30px;
+
+    line-height:
+        1.9;
+
+    font-size:
+        18px;
+
+    color:
+        var(--brown-soft);
+
+}
+
+
+/* =========================================================
+   EMOTIONAL ENDING
+========================================================= */
+
+.love-ending {
+
+    max-width:
+        700px;
+
+    margin:
+        30px auto 0;
+
+    padding:
+        35px 25px;
+
+    border-radius:
+        30px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .45
+        );
+
+    border:
+        1px solid
+        rgba(
+            233,
+            154,
+            170,
+            .25
+        );
+
+    backdrop-filter:
+        blur(10px);
+
+    box-shadow:
+        0 20px 60px
+        rgba(
+            73,
+            55,
+            39,
+            .08
+        );
+
+    transition:
+        .5s ease;
+
+}
+
+
+/* =========================================================
+   NEW — HIDDEN LOVE QUESTION
+========================================================= */
+
+.love-reveal {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        15px;
+
+}
+
+.love-reveal-label {
+
+    font-family:
+        "Patrick Hand",
+        cursive;
+
+    color:
+        var(--pink);
+
+    font-size:
+        23px;
+
+}
+
+.love-reveal-btn {
+
+    border:
+        1px solid
+        rgba(
+            233,
+            154,
+            170,
+            .35
+        );
+
+    padding:
+        15px 30px;
+
+    border-radius:
+        999px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(
+                255,
+                255,
+                255,
+                .95
+            ),
+            #fff5f7
+        );
+
+    color:
+        var(--green-dark);
+
+    font-size:
+        15px;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+
+    box-shadow:
+        0 12px 30px
+        rgba(
+            73,
+            55,
+            39,
+            .1
+        );
+
+    transition:
+        .35s ease;
+
+    animation:
+        revealPulse
+        2.5s
+        ease-in-out
+        infinite;
+
+}
+
+.love-reveal-btn:hover {
+
+    transform:
+        translateY(-5px)
+        scale(1.03);
+
+    box-shadow:
+        0 18px 38px
+        rgba(
+            73,
+            55,
+            39,
+            .15
+        );
+
+}
+
+@keyframes revealPulse {
+
+    0%,100% {
+
+        box-shadow:
+            0 12px 30px
+            rgba(
+                73,
+                55,
+                39,
+                .1
+            );
+
+    }
+
+    50% {
+
+        box-shadow:
+            0 12px 38px
+            rgba(
+                233,
+                154,
+                170,
+                .25
+            );
+
+    }
+
+}
+
+
+/* =========================================================
+   LOVE QUESTION CONTENT
+========================================================= */
+
+.love-question-content {
+
+    display:
+        none;
+
+    animation:
+        loveReveal
+        .9s
+        ease;
+
+}
+
+.love-question-content.show {
+
+    display:
+        block;
+
+}
+
+@keyframes loveReveal {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(25px)
+            scale(.97);
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+.love-small {
+
+    font-family:
+        "Patrick Hand",
+        cursive;
+
+    color:
+        var(--pink);
+
+    font-size:
+        23px;
+
+    margin-bottom:
+        10px;
+
+}
+
+.love-question {
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    color:
+        var(--green-dark);
+
+    font-size:
+        clamp(
+            30px,
+            6vw,
+            52px
+        );
+
+    line-height:
+        1.25;
+
+    margin-bottom:
+        12px;
+
+}
+
+.love-subtext {
+
+    color:
+        var(--brown-soft);
+
+    line-height:
+        1.8;
+
+    max-width:
+        550px;
+
+    margin:
+        0 auto 25px;
+
+}
+
+.love-buttons {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    gap:
+        14px;
+
+    flex-wrap:
+        wrap;
+
+}
+
+.love-choice {
+
+    border:
+        none;
+
+    padding:
+        13px 25px;
+
+    border-radius:
+        999px;
+
+    cursor:
+        pointer;
+
+    font-weight:
+        700;
+
+    transition:
+        .3s ease;
+
+}
+
+.love-choice:hover {
+
+    transform:
+        translateY(-4px)
+        scale(1.02);
+
+}
+
+.love-yes {
+
+    color:
+        white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--pink),
+            #d77f94
+        );
+
+    box-shadow:
+        0 10px 25px
+        rgba(
+            215,
+            127,
+            148,
+            .2
+        );
+
+}
+
+.love-soft {
+
+    color:
+        var(--green-dark);
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .8
+        );
+
+    border:
+        1px solid
+        rgba(
+            86,
+            116,
+            78,
+            .2
+        );
+
+}
+
+
+/* =========================================================
+   LOVE ANSWER
+========================================================= */
+
+.love-answer {
+
+    display:
+        none;
+
+    margin-top:
+        25px;
+
+    animation:
+        fadeUp
+        .8s
+        ease;
+
+}
+
+.love-answer.show {
+
+    display:
+        block;
+
+}
+
+.love-answer-flower {
+
+    font-size:
+        55px;
+
+    margin-bottom:
+        10px;
+
+}
+
+.love-answer-title {
+
+    font-family:
+        "Patrick Hand",
+        cursive;
+
+    font-size:
+        30px;
+
+    color:
+        var(--green-dark);
+
+    margin-bottom:
+        8px;
+
+}
+
+.love-answer-text {
+
+    color:
+        var(--brown-soft);
+
+    line-height:
+        1.8;
+
+}
+
+
+/* =========================================================
+   MABAR
+========================================================= */
+
+.mabar-box {
+
+    max-width:
+        620px;
+
+    margin:
+        35px auto 0;
+
+    padding:
+        28px 22px;
+
+    border:
+        1px solid
+        rgba(
+            111,
+            155,
+            104,
+            .25
+        );
+
+    border-radius:
+        24px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .55
+        );
+
+    backdrop-filter:
+        blur(10px);
+
+    animation:
+        fadeUp
+        .8s
+        ease;
+
+}
+
+.mabar-box.hidden {
+
+    display:
+        none;
+
+}
+
+.mabar-title {
+
+    font-family:
+        "Patrick Hand",
+        cursive;
+
+    font-size:
+        32px;
+
+    color:
+        var(--green-dark);
+
+    margin-bottom:
+        10px;
+
+}
+
+.mabar-text {
+
+    line-height:
+        1.8;
+
+    color:
+        var(--brown-soft);
+
+    margin-bottom:
+        22px;
+
+}
+
+.mabar-buttons {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    gap:
+        15px;
+
+    flex-wrap:
+        wrap;
+
+}
+
+.choice-btn {
+
+    min-width:
+        130px;
+
+    border:
+        none;
+
+    padding:
+        13px 25px;
+
+    border-radius:
+        999px;
+
+    cursor:
+        pointer;
+
+    font-weight:
+        700;
+
+    color:
+        white;
+
+    transition:
+        .3s ease;
+
+}
+
+.choice-btn:hover {
+
+    transform:
+        translateY(-3px);
+
+}
+
+.yes-btn {
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green),
+            #91b780
+        );
+
+}
+
+.no-btn {
+
+    background:
+        var(--pink);
+
+}
+
+.choice-result {
+
+    display:
+        none;
+
+    margin-top:
+        25px;
+
+    animation:
+        fadeUp
+        .6s
+        ease;
+
+}
+
+.choice-result.show {
+
+    display:
+        block;
+
+}
+
+.choice-result-title {
+
+    font-family:
+        "Patrick Hand",
+        cursive;
+
+    font-size:
+        28px;
+
+    color:
+        var(--green-dark);
+
+    margin-bottom:
+        8px;
+
+}
+
+.choice-result-text {
+
+    color:
+        var(--brown-soft);
+
+    line-height:
+        1.7;
+
+    margin-bottom:
+        18px;
+
+}
+
+.whatsapp-btn {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        8px;
+
+    text-decoration:
+        none;
+
+    background:
+        #65a86b;
+
+    color:
+        white;
+
+    padding:
+        12px 22px;
+
+    border-radius:
+        999px;
+
+    font-weight:
+        700;
+
+    transition:
+        .3s ease;
+
+}
+
+.whatsapp-btn:hover {
+
+    transform:
+        translateY(-3px);
+
+}
+
+.final-small-note {
+
+    margin-top:
+        25px;
+
+    font-family:
+        "Patrick Hand",
+        cursive;
+
+    color:
+        var(--brown-soft);
+
+    font-size:
+        18px;
+
+}
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+.music-btn {
+
+    position:
+        fixed;
+
+    bottom:
+        20px;
+
+    right:
+        20px;
+
+    width:
+        50px;
+
+    height:
+        50px;
+
+    border-radius:
+        50%;
+
+    border:
+        2px solid
+        rgba(
+            255,
+            255,
+            255,
+            .7
+        );
+
+    background:
+        var(--green);
+
+    color:
+        white;
+
+    cursor:
+        pointer;
+
+    z-index:
+        1000;
+
+    box-shadow:
+        0 10px 25px
+        rgba(
+            73,
+            55,
+            39,
+            .2
+        );
+
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(25px);
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity:
+            0;
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+    }
+
+}
+
+.fade-in {
+
+    animation:
+        fadeUp
+        .9s
+        ease;
+
+}
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+.confetti {
+
+    position:
+        fixed;
+
+    width:
+        8px;
+
+    height:
+        14px;
+
+    top:
+        -20px;
+
+    z-index:
+        9999;
+
+    pointer-events:
+        none;
+
+    animation:
+        fall
+        3.5s
+        linear
+        forwards;
+
+}
+
+@keyframes fall {
+
+    to {
+
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+
+        opacity:
+            0;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .page {
+
+        padding:
+            30px 15px;
+
+    }
+
+    .opening-card {
+
+        padding:
+            40px 15px;
+
+    }
+
+    .subtitle {
+
+        font-size:
+            15px;
+
+    }
+
+    .sun {
+
+        width:
+            80px;
+
+        height:
+            80px;
+
+        right:
+            5%;
+
+    }
+
+    .cloud {
+
+        transform:
+            scale(.7);
+
+    }
+
+    .birthday-card {
+
+        padding:
+            35px 15px;
+
+    }
+
+    .birthday-flower {
+
+        font-size:
+            65px;
+
+    }
+
+    .cake {
+
+        font-size:
+            70px;
+
+    }
+
+    .album {
+
+        padding:
+            12px;
+
+    }
+
+    .album-photo {
+
+        aspect-ratio:
+            4 / 3;
+
+        border-width:
+            5px;
+
+        font-size:
+            50px;
+
+    }
+
+    .memory-title {
+
+        font-size:
+            25px;
+
+    }
+
+    .memory-caption {
+
+        font-size:
+            15px;
+
+    }
+
+    .letter-card {
+
+        padding:
+            45px 25px;
+
+    }
+
+    .letter-text {
+
+        font-size:
+            21px;
+
+        line-height:
+            1.75;
+
+    }
+
+    .letter-signature {
+
+        font-size:
+            24px;
+
+    }
+
+    .little-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            28px;
+
+    }
+
+    .little-card {
+
+        height:
+            320px;
+
+        max-width:
+            330px;
+
+        width:
+            100%;
+
+        margin:
+            auto;
+
+    }
+
+    .little-front-title {
+
+        font-size:
+            23px;
+
+    }
+
+    .little-front-text {
+
+        font-size:
+            18px;
+
+    }
+
+    .little-front-icon {
+
+        width:
+            65px;
+
+        height:
+            65px;
+
+        font-size:
+            27px;
+
+    }
+
+    .flower-field {
+
+        height:
+            420px;
+
+    }
+
+    .flower-game-item {
+
+        font-size:
+            19px;
+
+    }
+
+    .final-card {
+
+        padding:
+            35px 15px;
+
+    }
+
+    .final-message {
+
+        font-size:
+            16px;
+
+    }
+
+    .love-ending {
+
+        padding:
+            28px 18px;
+
+    }
+
+    .love-question {
+
+        font-size:
+            32px;
+
+    }
+
+    .love-subtext {
+
+        font-size:
+            15px;
+
+    }
+
+    .love-reveal-btn {
+
+        padding:
+            14px 24px;
+
+        font-size:
+            14px;
+
+    }
+
+    .mabar-box {
+
+        padding:
+            25px 18px;
+
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        scroll-behavior:
+            auto !important;
+
+        transition-duration:
+            .01ms !important;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     GARDEN BACKGROUND
+========================================================= -->
+
+<div class="garden-bg">
+
+    <div class="sun"></div>
+
+    <div class="cloud cloud-1"></div>
+
+    <div class="cloud cloud-2"></div>
+
+    <div class="ground"></div>
+
+    <div class="flower">🌷</div>
+    <div class="flower">🌼</div>
+    <div class="flower">🌸</div>
+    <div class="flower">🌻</div>
+
+    <div class="butterfly butterfly-1">
+        🦋
+    </div>
+
+    <div class="butterfly butterfly-2">
+        🦋
+    </div>
+
+    <div class="butterfly butterfly-3">
+        🦋
+    </div>
+
+</div>
+
+
+<div class="petals">
+
+    <div class="petal">🌸</div>
+    <div class="petal">🌷</div>
+    <div class="petal">🌼</div>
+    <div class="petal">🌸</div>
+    <div class="petal">🌷</div>
+
+</div>
+
+
+<!-- =========================================================
+     PAGE 1 — OPENING
+========================================================= -->
+
+<section
+    class="page active"
+    id="pageOpening"
+>
+
+<div class="container">
+
+<div class="opening-card fade-in">
+
+    <div class="opening-flower">
+        🌷
+    </div>
+
+    <div class="small-label">
+        a little birthday garden
+    </div>
+
+    <h1 class="title">
+
+        Aku buat sesuatu nih
+
+        <br>
+
+        <span class="script">
+            just for you...
+        </span>
+
+    </h1>
+
+    <p class="subtitle">
+
+        Sedikit taman kecil di internet
+        yang isinya soal kamu!
+
+        <br>
+
+        Dilihat sampai habis ya...
+
+    </p>
+
+    <div
+        class="envelope"
+        id="envelope"
+    >
+
+        <div class="envelope-body"></div>
+
+        <div class="envelope-letter">
+            For you 🌸
+        </div>
+
+        <div class="envelope-flap"></div>
+
+    </div>
+
+    <button
+        class="main-btn"
+        id="openBtn"
+    >
+        BUKA SURATKU 💌
+    </button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     PAGE 2 — BIRTHDAY
+========================================================= -->
+
+<section
+    class="page"
+    id="pageBirthday"
+>
+
+<div class="container">
+
+<div class="birthday-card fade-in">
+
+    <div class="birthday-flower">
+        🌷
+    </div>
+
+    <div class="small-label">
+        today is a little more special
+    </div>
+
+    <h1 class="title">
+        HABEDEHHH
+    </h1>
+
+    <div class="name">
+        MELATI
+    </div>
+
+    <p class="subtitle">
+
+        Another year,
+        another chapter!
+
+        <br>
+
+    </p>
+
+    <div
+        class="cake"
+        id="cake"
+        title="Click me!"
+    >
+        🎂
+    </div>
+
+    <button
+        class="main-btn"
+        id="wishBtn"
+    >
+        BUAT PERMOHONAN 🌼
+    </button>
+
+    <div
+        class="wish-message"
+        id="wishMessage"
+    >
+
+        tutup mata kamu..
+
+        <br>
+
+        Berdoalah...
+
+        <br><br>
+
+        <small>
+            Semoga harapanmu tumbuh
+            seperti bunga di musim semi 🌷
+        </small>
+
+    </div>
+
+    <br><br>
+
+    <button
+        class="secondary-btn"
+        id="toMemories"
+    >
+        Lihat memori kita! (waspada malu sendiri) →
+    </button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     PAGE 3 — MEMORIES
+========================================================= -->
+
+<section
+    class="page"
+    id="pageMemories"
+>
+
+<div class="container">
+
+<div class="album-wrapper">
+
+    <div class="small-label">
+        little pieces of time
+    </div>
+
+    <h1 class="album-title">
+        Our Little Memories
+    </h1>
+
+    <p class="album-subtitle">
+
+        Foto-foto kita yang masih aku simpennnn
+
+    </p>
+
+    <div class="album">
+
+        <div
+            class="album-photo"
+            id="albumPhoto"
+        >
+            📸
+        </div>
+
+        <div
+            class="memory-number"
+            id="memoryNumber"
+        >
+            01
+        </div>
+
+        <h2
+            class="memory-title"
+            id="memoryTitle"
+        >
+            The Beginning
+        </h2>
+
+        <p
+            class="memory-caption"
+            id="memoryCaption"
+        >
+            Ini bukan first time sih...
+        </p>
+
+    </div>
+
+    <div class="album-controls">
+
+        <button
+            class="circle-btn"
+            id="prevMemory"
+        >
+            ←
+        </button>
+
+        <button
+            class="circle-btn"
+            id="nextMemory"
+        >
+            →
+        </button>
+
+    </div>
+
+    <br>
+
+    <button
+        class="main-btn"
+        id="toLetter"
+    >
+        Masih ada lagi yang pengen aku bilang 💌
+    </button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     PAGE 4 — LETTER
+========================================================= -->
+
+<section
+    class="page"
+    id="pageLetter"
+>
+
+<div class="container">
+
+<div class="letter-wrapper">
+
+    <div class="small-label">
+        words I wanted you to read
+    </div>
+
+    <h1 class="album-title">
+        A Letter For You
+    </h1>
+
+    <br>
+
+    <div class="letter-card">
+
+        <div
+            class="letter-heading"
+        >
+            Dear YOUR NAME,
+        </div>
+
+        <div
+            class="letter-text"
+            id="letterText"
+        ></div>
+
+        <div
+            class="letter-signature"
+            id="letterSignature"
+        >
+            — YOUR NAME ✦
+        </div>
+
+    </div>
+
+    <br><br>
+
+    <button
+        class="main-btn"
+        id="toLittleThings"
+    >
+        Oke... satu hal kecil lagi 👀
+    </button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     PAGE 5 — LITTLE THINGS
+========================================================= -->
+
+<section
+    class="page"
+    id="pageLittleThings"
+>
+
+<div class="container">
+
+<div class="little-wrapper">
+
+    <div class="small-label">
+        little pieces of you
+    </div>
+
+    <h1 class="album-title">
+        A Few Little Things 🌷
+    </h1>
+
+    <p class="album-subtitle">
+
+        Oke sekarang gak ada kata-kata
+
+        <br>
+
+        Cuma beberapa foto kita lagi!
+
+        <br><br>
+
+        <span class="script">
+            Klik kartunya... 🌸
+        </span>
+
+    </p>
+
+    <div
+        class="little-progress"
+        id="littleProgress"
+    >
+        0 / 3 ditemukan
+    </div>
+
+
+    <div class="little-grid">
+
+
+        <!-- FOTO 1 -->
+
+        <div
+            class="little-card"
+            data-photo="images/foto (3).jpg"
+        >
+
+            <div class="little-card-inner">
+
+                <div class="little-card-front">
+
+                    <div class="little-front-content">
+
+                        <div class="little-front-icon">
+                            🌷
+                        </div>
+
+                        <div class="little-front-title">
+                            A Little Thing
+                        </div>
+
+                        <div class="little-front-text">
+                            klik untuk membuka...
+                        </div>
+
+                    </div>
+
+                    <div class="little-front-number">
+                        01
+                    </div>
+
+                </div>
+
+
+                <div class="little-card-back">
+
+                    <div class="little-photo">
+
+                        <img
+                            src="images/foto (3).jpg"
+                            alt="Memory photo 1"
+                        >
+
+                    </div>
+
+                    <div class="photo-number">
+                        🌸 01
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOTO 2 -->
+
+        <div
+            class="little-card"
+            data-photo="images/foto (9).jpg"
+        >
+
+            <div class="little-card-inner">
+
+                <div class="little-card-front">
+
+                    <div class="little-front-content">
+
+                        <div class="little-front-icon">
+                            🌼
+                        </div>
+
+                        <div class="little-front-title">
+                            Another One
+                        </div>
+
+                        <div class="little-front-text">
+                            ada sesuatu di baliknya...
+                        </div>
+
+                    </div>
+
+                    <div class="little-front-number">
+                        02
+                    </div>
+
+                </div>
+
+
+                <div class="little-card-back">
+
+                    <div class="little-photo">
+
+                        <img
+                            src="images/foto (9).jpg"
+                            alt="Memory photo 2"
+                        >
+
+                    </div>
+
+                    <div class="photo-number">
+                        🌼 02
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOTO 3 -->
+
+        <div
+            class="little-card"
+            data-photo="images/foto (19).jpg"
+        >
+
+            <div class="little-card-inner">
+
+                <div class="little-card-front">
+
+                    <div class="little-front-content">
+
+                        <div class="little-front-icon">
+                            🌸
+                        </div>
+
+                        <div class="little-front-title">
+                            One More Thing
+                        </div>
+
+                        <div class="little-front-text">
+                            coba lihat...
+                        </div>
+
+                    </div>
+
+                    <div class="little-front-number">
+                        03
+                    </div>
+
+                </div>
+
+
+                <div class="little-card-back">
+
+                    <div class="little-photo">
+
+                        <img
+                            src="images/foto (19).jpg"
+                            alt="Memory photo 3"
+                        >
+
+                    </div>
+
+                    <div class="photo-number">
+                        🌷 03
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <button
+        class="main-btn little-next"
+        id="toFindStar"
+    >
+        AKU PUNYA SATU GAME BUAT KAMU 🌼 →
+    </button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     LIGHTBOX
+========================================================= -->
+
+<div
+    class="photo-lightbox"
+    id="photoLightbox"
+>
+
+<div class="lightbox-content">
+
+    <button
+        class="lightbox-close"
+        id="lightboxClose"
+    >
+        ×
+    </button>
+
+    <img
+        id="lightboxImage"
+        src=""
+        alt="Full photo"
+    >
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+     PAGE 6 — FIND THE FLOWER
+========================================================= -->
+
+<section
+    class="page"
+    id="pageFindStar"
+>
+
+<div class="container">
+
+<div class="flower-game-wrapper">
+
+    <div class="small-label">
+        one last little game
+    </div>
+
+    <h1 class="flower-game-title">
+        Find The Flower 🌼
+    </h1>
+
+    <p class="flower-game-subtitle">
+
+        Oke sekarang kita main game!
+
+        <br>
+
+        Coba cari satu bunga yang berbeda, bunga yang spesial di antara bunga-bunga lainnya
+
+    </p>
+
+    <div
+        class="flower-score"
+        id="flowerScore"
+    >
+        🌷 0 / 3
+    </div>
+
+
+    <div
+        class="flower-field"
+        id="flowerField"
+    >
+
+    </div>
+
+
+    <div
+        class="flower-game-success"
+        id="flowerGameSuccess"
+    >
+
+        <div class="success-flower">
+            🌸
+        </div>
+
+        <div class="success-text">
+            You found them all.
+        </div>
+
+        <button
+            class="main-btn"
+            id="toFinal"
+        >
+            SATU HALAMAN TERAKHIR →
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     PAGE 7 — FINAL
+========================================================= -->
+
+<section
+    class="page"
+    id="pageFinal"
+>
+
+<div class="container">
+
+<div class="final-card fade-in">
+
+
+    <!-- =====================================================
+         FINAL INTRO
+    ====================================================== -->
+
+    <div class="final-intro">
+
+        <div class="final-flower">
+            🌷
+        </div>
+
+        <div class="small-label">
+            from me, to you
+        </div>
+
+        <h1 class="final-title">
+            Happy Birthday,
+        </h1>
+
+        <div class="final-name">
+            YOUR NAME 🎂
+        </div>
+
+        <p class="final-message">
+
+            Semoga website kecil ini
+            bikin kamu tersenyum..
+
+            <br><br>
+
+            Senyum gak? senyum gak?
+            Senyum kan....? :)
+
+            <br>
+
+            Oh iya bonekanya,
+            semoga kamu suka yaa.
+
+            <br>
+
+            Aku gak tahu kamu suka apa,
+            jadi... aku pilihin yang kulihat
+            the best buat kamuuu.
+
+            <br><br>
+
+            Terimakasih udah jadi diri kamu.
+
+            <br><br>
+
+            Dan kemanapun hidup membawa kamu,
+
+            <br>
+
+            aku harap hal-hal indah
+            akan selalu menunggu.
+
+        </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         EMOTIONAL QUESTION
+    ====================================================== -->
+
+    <div
+        class="love-ending"
+        id="loveEnding"
+    >
+
+        <!-- TOMBOL PEMBUKA -->
+
+        <div
+            class="love-reveal"
+            id="loveReveal"
+        >
+
+            <div class="love-reveal-label">
+                before you go... 🌷
+            </div>
+
+            <button
+                class="love-reveal-btn"
+                id="loveRevealBtn"
+            >
+                BUKA SATU PERTANYAAN 🌷
+            </button>
+
+        </div>
+
+
+        <!-- PERTANYAAN YANG BARU MUNCUL SETELAH DIKLIK -->
+
+        <div
+            class="love-question-content"
+            id="loveQuestionContent"
+        >
+
+            <div class="love-small">
+                one last thing... 🌷
+            </div>
+
+            <div class="love-question">
+                Would you fall in love with me again?
+            </div>
+
+            <p class="love-subtext">
+
+                Kalau kita harus berulang kali kita jauh...
+                Dan untuk kita yang sekarang...
+
+
+
+                <br>
+
+                aku penasaran,
+                apakah jawabannya masih sama?
+
+            </p>
+
+
+            <div
+                class="love-buttons"
+                id="loveButtons"
+            >
+
+                <button
+                    class="love-choice love-yes"
+                    id="loveYesBtn"
+                >
+                    I would. 🌷
+                </button>
+
+                <button
+                    class="love-choice love-soft"
+                    id="loveSoftBtn"
+                >
+                    Maybe... hehe
+                </button>
+
+            </div>
+
+
+            <div
+                class="love-answer"
+                id="loveAnswer"
+            >
+
+                <div class="love-answer-flower">
+                    🌸
+                </div>
+
+                <div class="love-answer-title">
+                    Hehe... thank you. 🌷
+                </div>
+
+                <div class="love-answer-text">
+
+                    Apapun jawabannya
+                    aku senang kamu sampai ke sinii
+
+                    <br>
+
+                    Dan kalau suatu hari nanti
+                    kita mengingat semuanya lagi,
+
+                    <br>
+
+                    semoga yang kita ingat
+                    adalah hal-hal baiknya.
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         MABAR
+    ====================================================== -->
+
+    <div
+        class="mabar-box hidden"
+        id="mabarBox"
+    >
+
+        <div class="mabar-title">
+            Okay okay cukup. sekarang... 👀
+        </div>
+
+        <div class="mabar-text">
+
+            Sekarang pertanyaan yang jauh
+            lebih penting.
+
+            <br><br>
+
+            Ehem ehem... malam ini.... mau ngobrol dan main sama aku gak? hehe🎮
+
+            <br><br>
+
+            Kalau luang aja sih...
+
+            <br>
+
+            Gak harus sekarang kokkk, kalau kamu ada waktu free kasih tahu ajaaa
+            santai aja :)
+
+        </div>
+
+
+        <div class="mabar-buttons">
+
+            <button
+                class="choice-btn yes-btn"
+                id="yesBtn"
+            >
+                YESS 🎮
+            </button>
+
+            <button
+                class="choice-btn no-btn"
+                id="noBtn"
+            >
+                NEXT TIME 😭
+            </button>
+
+        </div>
+
+
+        <!-- YES -->
+
+        <div
+            class="choice-result"
+            id="yesResult"
+        >
+
+            <div class="choice-result-title">
+                YESS LESGOOO 🎮🌷
+            </div>
+
+            <div class="choice-result-text">
+
+                Kalau kamu mau,
+                nanti kita cari waktu yang pas yaa.
+
+                <br>
+
+                Gak harus sekarang kok,
+                kapan kamu sempat aja.
+
+                <br><br>
+
+                Kalau mau langsung bilang ke aku,
+                tinggal pencet tombol di bawah hehe.
+
+            </div>
+
+            <a
+                class="whatsapp-btn"
+                id="yesWhatsapp"
+                href="#"
+                target="_blank"
+                rel="noopener"
+            >
+                💬 Bilang ke aku
+            </a>
+
+        </div>
+
+
+        <!-- NO -->
+
+        <div
+            class="choice-result"
+            id="noResult"
+        >
+
+            <div class="choice-result-title">
+                Okeeehhh 😭
+            </div>
+
+            <div class="choice-result-text">
+
+                Gak apa-apa kokkk.
+
+                <br>
+
+                Next time yaa,
+                kalau nanti ada waktu luang
+                dan kebetulan lagi pengen mabar
+                atau ngobrol.
+
+                <br><br>
+
+                Santai ajaa, no pressure :)
+
+            </div>
+
+            <a
+                class="whatsapp-btn"
+                id="noWhatsapp"
+                href="#"
+                target="_blank"
+                rel="noopener"
+            >
+                💬 Tetap kirim pesan
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="final-small-note">
+
+        whatever your answer is,
+        thank you for being here until the end 🌷
+
+    </div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     MUSIC
+========================================================= -->
+
+<button
+    class="music-btn"
+    id="musicBtn"
+    title="Music"
+>
+    ♫
+</button>
+
+<audio
+    id="backgroundMusic"
+    loop
+    preload="auto"
+>
+
+    <source
+        src="./music/music.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+<script>
+
+/* =========================================================
+   PERSONALIZATION
+========================================================= */
+
+const recipientName =
+    "MELATI ✿";
+
+const senderName =
+    "STAR";
+
+const WA_NUMBER =
+    "6281573177618";
+
+
+/* =========================================================
+   SURAT PERSONAL
+========================================================= */
+
+const letterContent =
+`Happy birthday, to you.
+
+Aku gak tahu harus mulai dari mana,
+jadi aku bakal mulai dari yang paling sederhana.
+
+Terimakasih udah hadir di dunia ini,
+my waif- eh, my prend maksudnya.
+
+Terimakasih untuk semua obrolan kita,
+jokes gak jelas dan sedikit awkwardnya kita... wkwkw,
+dan semua kenangan yang menjadi
+sesuatu yang layak untuk disimpan.
+
+Terus aku juga mau ngomong soal sesuatu.
+
+Sebenernya aku udah mau bilang ini dari minggu lalu pas aku ngajakin mabar
+tapiii aku takut kamunya sibuk
+soalnya udah mulai jadi mabaahh.
+
+Jadi... kemarin aku sempet buka chat lama kita terus,
+
+Aku liat dulu aku sediem itu ya..?
+
+Pas aku liat lagi,
+kamu yang selalu mulai.
+kamu yang duluan nyapa aku
+
+Aku?
+
+Kelihatan banget menghindarnya.
+Jawab pun pendek
+
+Dan aku mau jelasin soal itu.
+
+Aku udah pernah bilang ini,
+kalau dulu aku masih bingung, Mel,
+sama perasaan aku sendiri.
+
+Aku masih ragu.
+
+Aku takut kamu menuntut lebih,
+tapi ternyata enggak.
+
+Cuman aku yang pikirannya kejauhan.
+
+Karena itu aku selalu ngejauh.
+
+Kamu juga mungkin nyadar,
+aku selalu lama jawab chat kamu.
+
+Aku minta maaf soal itu semua.
+
+Terus... kita pernah jauh.
+
+Aku tahu dulu aku pernah sediem itu.
+
+Aku cuman takut dan bingung...
+
+aku minta maaf untuk itu. Kadang aku ngerasa kalau aku gak bisa jadi cowok gentle....(jiakh gentle)
+
+Tapi sekarang aku udah pasti sama diri aku sendirii
+
+Aku bakal terus menghormati keputusan kita
+buat gak pernah jadi lebih dari ini.
+
+Dan... kita balik lagii
+aku bakal berusaha berubah
+tapi maaf yaaa kalau masih sedikit sama kayak dulu
+karena aku masih berusaha juga :)
+
+Jujurr... dari kita balik deket lagi aku tuh selalu cari topikkkk wkwkw
+Tapi aku ragu terus mau chatttt
+
+Kalau nanti kita bakal jauh lagi,
+aku bakal terus berusaha pertahankan rasa ini
+
+Dan semoga aja
+kita bakal ketemu lagi nanti.
+
+Kalau enggak...
+
+Aku yakin dan berharap
+kamu melangkah ke jalan yang baik.
+
+Oh iyaaa maaf yaaa kalau aku selalu ngajakin mabarrr, hehe
+aku cuman pengen main sama ngobrol bareng aja sih....
+But i am soriihh kalau keseringan ngajaknyaaa
+
+Jadi...
+
+Happy birthday waifu ak!!
+
+19 kan?
+
+Tua.
+
+Haruskah aku panggil mba?
+
+awokwokok.
+
+Duh yapping panjang banget,
+sorry yaw kalau lebay.
+
+Biasaklah kebiasaan nulis puisi begini lah :)
+
+🌷`;
+
+
+/* =========================================================
+   PAGE SYSTEM
+========================================================= */
+
+const pages = {
+
+    opening:
+        document.getElementById(
+            "pageOpening"
+        ),
+
+    birthday:
+        document.getElementById(
+            "pageBirthday"
+        ),
+
+    memories:
+        document.getElementById(
+            "pageMemories"
+        ),
+
+    letter:
+        document.getElementById(
+            "pageLetter"
+        ),
+
+    littleThings:
+        document.getElementById(
+            "pageLittleThings"
+        ),
+
+    findStar:
+        document.getElementById(
+            "pageFindStar"
+        ),
+
+    final:
+        document.getElementById(
+            "pageFinal"
+        )
+
+};
+
+
+function showPage(page) {
+
+    Object.values(pages)
+        .forEach(currentPage => {
+
+            currentPage
+                .classList
+                .remove("active");
+
+        });
+
+    pages[page]
+        .classList
+        .add("active");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =========================================================
+   PERSONALIZATION
+========================================================= */
+
+document
+    .querySelectorAll(".name")
+    .forEach(element => {
+
+        element.textContent =
+            recipientName;
+
+    });
+
+document
+    .querySelector(".final-name")
+    .textContent =
+        recipientName +
+        " 🎂";
+
+document
+    .querySelector(".letter-heading")
+    .textContent =
+        "Dear " +
+        recipientName +
+        ",";
+
+document
+    .querySelector(".letter-signature")
+    .textContent =
+        "— " +
+        senderName +
+        " ✦";
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+const music =
+    document.getElementById(
+        "backgroundMusic"
+    );
+
+const musicBtn =
+    document.getElementById(
+        "musicBtn"
+    );
+
+let musicPlaying =
+    false;
+
+
+/* =========================================================
+   OPEN ENVELOPE
+========================================================= */
+
+const envelope =
+    document.getElementById(
+        "envelope"
+    );
+
+const openBtn =
+    document.getElementById(
+        "openBtn"
+    );
+
+openBtn.addEventListener(
+    "click",
+    async function () {
+
+        envelope.classList.add(
+            "open"
+        );
+
+        try {
+
+            await music.play();
+
+            musicPlaying =
+                true;
+
+            musicBtn.textContent =
+                "🔊";
+
+        } catch (error) {
+
+            console.log(
+                "Autoplay musik diblokir browser."
+            );
+
+        }
+
+        createConfetti(45);
+
+        setTimeout(
+            function () {
+
+                showPage(
+                    "birthday"
+                );
+
+            },
+            1000
+        );
+
+    }
+);
+
+
+/* =========================================================
+   BIRTHDAY WISH
+========================================================= */
+
+const wishBtn =
+    document.getElementById(
+        "wishBtn"
+    );
+
+const wishMessage =
+    document.getElementById(
+        "wishMessage"
+    );
+
+let wishMade =
+    false;
+
+wishBtn.addEventListener(
+    "click",
+    function () {
+
+        if (wishMade)
+            return;
+
+        wishMade =
+            true;
+
+        wishMessage
+            .classList
+            .add("show");
+
+        wishBtn.textContent =
+            "WISH MADE 🌷";
+
+        createConfetti(50);
+
+    }
+);
+
+document
+    .getElementById("cake")
+    .addEventListener(
+        "click",
+        function () {
+
+            wishMessage
+                .classList
+                .add("show");
+
+        }
+    );
+
+document
+    .getElementById("toMemories")
+    .addEventListener(
+        "click",
+        function () {
+
+            showPage(
+                "memories"
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   MEMORIES
+========================================================= */
+
+const memories = [
+
+    {
+
+        number:
+            "01",
+
+        title:
+            "The Beginning",
+
+        caption:
+            "Masih inget ini? bukan foto pertama kita sih tapi jujur... aku gemeter banget waktu itu. Akhirnya aku bisa ketemu kamu jadii aku gugup bangettt",
+
+        image:
+            "images/foto (1).jpg"
+
+    },
+
+    {
+
+        number:
+            "02",
+
+        title:
+            "That One Day",
+
+        caption:
+            "pat pat nya gak sampe, huh... lagi boleh gak? hehe canda canda!! ",
+
+        image:
+            "images/foto (12).jpg"
+
+    },
+
+    {
+
+        number:
+            "03",
+
+        title:
+            "A Favorite Memory",
+
+        caption:
+            "Gelangnya... masih aku simpen walau udah rusak sih.. Tapi aku beli gelang baru tuh, bagus gak? moga suka deh yaaw dipake setiap hari gpp kok :)",
+
+        image:
+            "images/foto (2).jpg"
+
+    },
+
+    {
+
+        number:
+            "04",
+
+        title:
+            "To Be Continued",
+
+        caption:
+            "Jujur iya, kaku and malu banget pliss. But i hope it last a little bit longer though... maaf ya kalau aku gak banyak gerak waktu itu, aku gugup banget, serius...",
+
+        image:
+            "images/foto (5).jpeg"
+
+    }
+
+];
+
+let currentMemory =
+    0;
+
+const albumPhoto =
+    document.getElementById(
+        "albumPhoto"
+    );
+
+const memoryNumber =
+    document.getElementById(
+        "memoryNumber"
+    );
+
+const memoryTitle =
+    document.getElementById(
+        "memoryTitle"
+    );
+
+const memoryCaption =
+    document.getElementById(
+        "memoryCaption"
+    );
+
+
+function updateMemory() {
+
+    const memory =
+        memories[
+            currentMemory
+        ];
+
+    memoryNumber.textContent =
+        memory.number;
+
+    memoryTitle.textContent =
+        memory.title;
+
+    memoryCaption.textContent =
+        memory.caption;
+
+    if (
+        memory.image !== ""
+    ) {
+
+        albumPhoto.innerHTML =
+            `<img
+                src="${memory.image}"
+                alt="Memory"
+            >`;
+
+    } else {
+
+        albumPhoto.innerHTML =
+            "📸";
+
+    }
+
+}
+
+updateMemory();
+
+
+document
+    .getElementById("nextMemory")
+    .addEventListener(
+        "click",
+        function () {
+
+            currentMemory++;
+
+            if (
+                currentMemory >=
+                memories.length
+            ) {
+
+                currentMemory =
+                    0;
+
+            }
+
+            updateMemory();
+
+        }
+    );
+
+
+document
+    .getElementById("prevMemory")
+    .addEventListener(
+        "click",
+        function () {
+
+            currentMemory--;
+
+            if (
+                currentMemory < 0
+            ) {
+
+                currentMemory =
+                    memories.length - 1;
+
+            }
+
+            updateMemory();
+
+        }
+    );
+
+
+document
+    .getElementById("toLetter")
+    .addEventListener(
+        "click",
+        function () {
+
+            showPage(
+                "letter"
+            );
+
+            startLetter();
+
+        }
+    );
+
+
+/* =========================================================
+   LETTER TYPEWRITER
+========================================================= */
+
+let letterStarted =
+    false;
+
+function startLetter() {
+
+    if (letterStarted)
+        return;
+
+    letterStarted =
+        true;
+
+    const textElement =
+        document.getElementById(
+            "letterText"
+        );
+
+    let index =
+        0;
+
+    function typeCharacter() {
+
+        if (
+            index <
+            letterContent.length
+        ) {
+
+            textElement.textContent +=
+                letterContent.charAt(
+                    index
+                );
+
+            index++;
+
+            let speed =
+                24;
+
+            if (
+                letterContent
+                    .charAt(index - 1)
+                    === "\n"
+            ) {
+
+                speed =
+                    180;
+
+            }
+
+            setTimeout(
+                typeCharacter,
+                speed
+            );
+
+        }
+
+    }
+
+    typeCharacter();
+
+}
+
+
+/* =========================================================
+   LETTER → LITTLE THINGS
+========================================================= */
+
+document
+    .getElementById(
+        "toLittleThings"
+    )
+    .addEventListener(
+        "click",
+        function () {
+
+            showPage(
+                "littleThings"
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   LITTLE THINGS
+========================================================= */
+
+const littleCards =
+    document.querySelectorAll(
+        ".little-card"
+    );
+
+const littleProgress =
+    document.getElementById(
+        "littleProgress"
+    );
+
+const littleNext =
+    document.getElementById(
+        "toFindStar"
+    );
+
+let openedPhotos =
+    0;
+
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+
+const photoLightbox =
+    document.getElementById(
+        "photoLightbox"
+    );
+
+const lightboxImage =
+    document.getElementById(
+        "lightboxImage"
+    );
+
+const lightboxClose =
+    document.getElementById(
+        "lightboxClose"
+    );
+
+
+/* =========================================================
+   CLICK CARD
+========================================================= */
+
+littleCards.forEach(
+    card => {
+
+        card.addEventListener(
+            "click",
+            function () {
+
+                const photo =
+                    card.dataset.photo;
+
+                if (
+                    !card.classList.contains(
+                        "flipped"
+                    )
+                ) {
+
+                    card.classList.add(
+                        "flipped"
+                    );
+
+                    if (
+                        !card.classList.contains(
+                            "viewed"
+                        )
+                    ) {
+
+                        card.classList.add(
+                            "viewed"
+                        );
+
+                        openedPhotos++;
+
+                        littleProgress.textContent =
+                            openedPhotos +
+                            " / 3 ditemukan";
+
+                        createConfetti(10);
+
+                        if (
+                            openedPhotos === 3
+                        ) {
+
+                            littleProgress.textContent =
+                                "3 / 3 ditemukan 🌷";
+
+                            littleNext
+                                .classList
+                                .add(
+                                    "ready"
+                                );
+
+                            createConfetti(
+                                25
+                            );
+
+                        }
+
+                    }
+
+                    return;
+
+                }
+
+                lightboxImage.src =
+                    photo;
+
+                photoLightbox
+                    .classList
+                    .add(
+                        "show"
+                    );
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   CLOSE LIGHTBOX
+========================================================= */
+
+photoLightbox.addEventListener(
+    "click",
+    function (event) {
+
+        if (
+            event.target ===
+            photoLightbox
+        ) {
+
+            photoLightbox
+                .classList
+                .remove(
+                    "show"
+                );
+
+        }
+
+    }
+);
+
+
+lightboxClose.addEventListener(
+    "click",
+    function () {
+
+        photoLightbox
+            .classList
+            .remove(
+                "show"
+            );
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (
+            event.key ===
+            "Escape"
+        ) {
+
+            photoLightbox
+                .classList
+                .remove(
+                    "show"
+                );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   LITTLE THINGS → FLOWER GAME
+========================================================= */
+
+littleNext.addEventListener(
+    "click",
+    function () {
+
+        if (
+            openedPhotos < 3
+        ) {
+
+            return;
+
+        }
+
+        showPage(
+            "findStar"
+        );
+
+        startFlowerGame();
+
+    }
+);
+
+
+/* =========================================================
+   FIND THE FLOWER GAME
+========================================================= */
+
+const flowerField =
+    document.getElementById(
+        "flowerField"
+    );
+
+const flowerScore =
+    document.getElementById(
+        "flowerScore"
+    );
+
+const flowerGameSuccess =
+    document.getElementById(
+        "flowerGameSuccess"
+    );
+
+let flowersFound =
+    0;
+
+const flowersPerRound =
+    18;
+
+
+/* =========================================================
+   SAFE POSITION SYSTEM
+========================================================= */
+
+function createFlowerField() {
+
+    flowerField.innerHTML =
+        "";
+
+    const targetIndex =
+        Math.floor(
+            Math.random() *
+            flowersPerRound
+        );
+
+    const positions =
+        [];
+
+    const minDistance =
+        12;
+
+
+    function getSafePosition() {
+
+        let attempts =
+            0;
+
+        while (
+            attempts < 200
+        ) {
+
+            const left =
+                7 +
+                Math.random() *
+                84;
+
+            const top =
+                10 +
+                Math.random() *
+                78;
+
+            let safe =
+                true;
+
+
+            for (
+                const position
+                of positions
+            ) {
+
+                const dx =
+                    left -
+                    position.left;
+
+                const dy =
+                    top -
+                    position.top;
+
+                const distance =
+                    Math.sqrt(
+                        dx * dx +
+                        dy * dy
+                    );
+
+                if (
+                    distance <
+                    minDistance
+                ) {
+
+                    safe =
+                        false;
+
+                    break;
+
+                }
+
+            }
+
+
+            if (safe) {
+
+                const newPosition = {
+
+                    left:
+                        left,
+
+                    top:
+                        top
+
+                };
+
+                positions.push(
+                    newPosition
+                );
+
+                return newPosition;
+
+            }
+
+            attempts++;
+
+        }
+
+
+        const index =
+            positions.length;
+
+        const columns =
+            5;
+
+        const column =
+            index %
+            columns;
+
+        const row =
+            Math.floor(
+                index /
+                columns
+            );
+
+        const fallback = {
+
+            left:
+                7 +
+                column *
+                20,
+
+            top:
+                8 +
+                row *
+                24
+
+        };
+
+        positions.push(
+            fallback
+        );
+
+        return fallback;
+
+    }
+
+
+    for (
+        let i = 0;
+        i < flowersPerRound;
+        i++
+    ) {
+
+        const flower =
+            document.createElement(
+                "button"
+            );
+
+        flower.className =
+            "flower-game-item";
+
+        flower.textContent =
+            i % 3 === 0
+                ? "🌼"
+                : "🌸";
+
+        const position =
+            getSafePosition();
+
+        flower.style.left =
+            position.left +
+            "%";
+
+        flower.style.top =
+            position.top +
+            "%";
+
+        flower.dataset.target =
+            i === targetIndex
+                ? "true"
+                : "false";
+
+
+        flower.addEventListener(
+            "click",
+            function () {
+
+                if (
+                    flower.dataset.target
+                    === "true"
+                ) {
+
+                    findCorrectFlower(
+                        flower
+                    );
+
+                } else {
+
+                    flower.classList
+                        .remove(
+                            "wrong"
+                        );
+
+                    void flower.offsetWidth;
+
+                    flower.classList
+                        .add(
+                            "wrong"
+                        );
+
+                }
+
+            }
+        );
+
+
+        flowerField.appendChild(
+            flower
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   CORRECT FLOWER
+========================================================= */
+
+function findCorrectFlower(
+    flower
+) {
+
+    flower.classList.add(
+        "correct"
+    );
+
+    flowersFound++;
+
+    flowerScore.textContent =
+        "🌷 " +
+        flowersFound +
+        " / 3";
+
+    createConfetti(
+        15
+    );
+
+
+    if (
+        flowersFound >= 3
+    ) {
+
+        setTimeout(
+            function () {
+
+                flowerGameSuccess
+                    .classList
+                    .add(
+                        "show"
+                    );
+
+            },
+            800
+        );
+
+        return;
+
+    }
+
+
+    setTimeout(
+        function () {
+
+            createFlowerField();
+
+        },
+        900
+    );
+
+}
+
+
+/* =========================================================
+   START GAME
+========================================================= */
+
+function startFlowerGame() {
+
+    flowersFound =
+        0;
+
+    flowerScore.textContent =
+        "🌷 0 / 3";
+
+    flowerGameSuccess
+        .classList
+        .remove(
+            "show"
+        );
+
+    createFlowerField();
+
+}
+
+
+/* =========================================================
+   FLOWER GAME → FINAL
+========================================================= */
+
+document
+    .getElementById(
+        "toFinal"
+    )
+    .addEventListener(
+        "click",
+        function () {
+
+            showPage(
+                "final"
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   FINAL — EMOTIONAL QUESTION
+========================================================= */
+
+const loveEnding =
+    document.getElementById(
+        "loveEnding"
+    );
+
+const loveReveal =
+    document.getElementById(
+        "loveReveal"
+    );
+
+const loveRevealBtn =
+    document.getElementById(
+        "loveRevealBtn"
+    );
+
+const loveQuestionContent =
+    document.getElementById(
+        "loveQuestionContent"
+    );
+
+const loveButtons =
+    document.getElementById(
+        "loveButtons"
+    );
+
+const loveYesBtn =
+    document.getElementById(
+        "loveYesBtn"
+    );
+
+const loveSoftBtn =
+    document.getElementById(
+        "loveSoftBtn"
+    );
+
+const loveAnswer =
+    document.getElementById(
+        "loveAnswer"
+    );
+
+const mabarBox =
+    document.getElementById(
+        "mabarBox"
+    );
+
+
+/* =========================================================
+   REVEAL LOVE QUESTION
+========================================================= */
+
+let loveQuestionOpened =
+    false;
+
+loveRevealBtn.addEventListener(
+    "click",
+    function () {
+
+        if (
+            loveQuestionOpened
+        ) {
+
+            return;
+
+        }
+
+        loveQuestionOpened =
+            true;
+
+        loveReveal.style.display =
+            "none";
+
+        loveQuestionContent
+            .classList
+            .add(
+                "show"
+            );
+
+        createConfetti(
+            18
+        );
+
+    }
+);
+
+
+/* =========================================================
+   REVEAL MABAR
+========================================================= */
+
+function revealMabar() {
+
+    loveButtons.style.display =
+        "none";
+
+    loveAnswer
+        .classList
+        .add(
+            "show"
+        );
+
+    createConfetti(
+        45
+    );
+
+
+    setTimeout(
+        function () {
+
+            mabarBox
+                .classList
+                .remove(
+                    "hidden"
+                );
+
+            mabarBox.scrollIntoView({
+                behavior:
+                    "smooth",
+                block:
+                    "center"
+            });
+
+        },
+        1300
+    );
+
+}
+
+
+/* =========================================================
+   LOVE — YES
+========================================================= */
+
+loveYesBtn.addEventListener(
+    "click",
+    function () {
+
+        loveAnswer
+            .querySelector(
+                ".love-answer-title"
+            )
+            .textContent =
+                "Wow... well, me too, me too. 🌷";
+
+        revealMabar();
+
+    }
+);
+
+
+/* =========================================================
+   LOVE — MAYBE
+========================================================= */
+
+loveSoftBtn.addEventListener(
+    "click",
+    function () {
+
+        loveAnswer
+            .querySelector(
+                ".love-answer-title"
+            )
+            .textContent =
+                "Hehe... Okeh deh aku anggap maybe ajaaaa 🌸";
+
+        revealMabar();
+
+    }
+);
+
+
+/* =========================================================
+   FINAL — WHATSAPP
+========================================================= */
+
+const yesBtn =
+    document.getElementById(
+        "yesBtn"
+    );
+
+const noBtn =
+    document.getElementById(
+        "noBtn"
+    );
+
+const yesResult =
+    document.getElementById(
+        "yesResult"
+    );
+
+const noResult =
+    document.getElementById(
+        "noResult"
+    );
+
+const yesWhatsapp =
+    document.getElementById(
+        "yesWhatsapp"
+    );
+
+const noWhatsapp =
+    document.getElementById(
+        "noWhatsapp"
+    );
+
+
+const yesMessage =
+`YESS 😭🎮
+
+Kalau kamu mauuu gass ingfokan saja.
+
+Kirim ke wa aku yaaaww
+
+Happy birthday sekali lagi, Mel 🌷`;
+
+
+const noMessage =
+`Okeeehhh 😭
+
+Gak apa-apa kokkk, next timeee ajahhhh ingfokan ke akuuu
+
+Amann ajaaa
+
+Happy birthday sekali lagi, Mel 🌷`;
+
+
+yesWhatsapp.href =
+    "https://wa.me/" +
+    WA_NUMBER +
+    "?text=" +
+    encodeURIComponent(
+        yesMessage
+    );
+
+
+noWhatsapp.href =
+    "https://wa.me/" +
+    WA_NUMBER +
+    "?text=" +
+    encodeURIComponent(
+        noMessage
+    );
+
+
+yesBtn.addEventListener(
+    "click",
+    function () {
+
+        yesResult
+            .classList
+            .add(
+                "show"
+            );
+
+        noResult
+            .classList
+            .remove(
+                "show"
+            );
+
+        yesBtn.textContent =
+            "YESS 🎮🌷";
+
+        noBtn.style.opacity =
+            ".45";
+
+        createConfetti(
+            60
+        );
+
+    }
+);
+
+
+noBtn.addEventListener(
+    "click",
+    function () {
+
+        noResult
+            .classList
+            .add(
+                "show"
+            );
+
+        yesResult
+            .classList
+            .remove(
+                "show"
+            );
+
+        noBtn.textContent =
+            "NEXT TIME YA 😭";
+
+        yesBtn.style.opacity =
+            ".45";
+
+    }
+);
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+function createConfetti(
+    amount = 35
+) {
+
+    for (
+        let i = 0;
+        i < amount;
+        i++
+    ) {
+
+        const confetti =
+            document.createElement(
+                "div"
+            );
+
+        confetti
+            .classList
+            .add(
+                "confetti"
+            );
+
+        confetti.style.left =
+            Math.random() *
+            100 +
+            "vw";
+
+        confetti.style.background =
+            randomConfettiColor();
+
+        confetti.style.animationDelay =
+            Math.random() *
+            .6 +
+            "s";
+
+        confetti.style.transform =
+            `rotate(
+                ${Math.random() * 360}deg
+            )`;
+
+        document.body
+            .appendChild(
+                confetti
+            );
+
+        setTimeout(
+            function () {
+
+                confetti.remove();
+
+            },
+            4000
+        );
+
+    }
+
+}
+
+
+function randomConfettiColor() {
+
+    const colors = [
+
+        "#6f9b68",
+        "#e99aaa",
+        "#f4b78d",
+        "#e9c85c",
+        "#b9a8d9",
+        "#ffffff"
+
+    ];
+
+    return colors[
+        Math.floor(
+            Math.random() *
+            colors.length
+        )
+    ];
+
+}
+
+
+/* =========================================================
+   MUSIC BUTTON
+========================================================= */
+
+musicBtn.addEventListener(
+    "click",
+    async function () {
+
+        try {
+
+            if (
+                musicPlaying
+            ) {
+
+                music.pause();
+
+                musicPlaying =
+                    false;
+
+                musicBtn.textContent =
+                    "♫";
+
+            } else {
+
+                await music.play();
+
+                musicPlaying =
+                    true;
+
+                musicBtn.textContent =
+                    "🔊";
+
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Music error:",
+                error
+            );
+
+            alert(
+                "Musiknya gagal diputar 😭\n\n" +
+                "Pastikan file music/music.mp3 benar-benar ada."
+            );
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
+```
