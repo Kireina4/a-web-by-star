@@ -3520,6 +3520,32 @@ button {
 
 }
 
+.love-continue {
+
+    display: none;
+    margin: 22px auto 0;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--green), #91b780);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .3s ease;
+    animation: fadeUp .7s ease;
+
+}
+
+.love-continue.show {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.love-continue:hover {
+    transform: translateY(-3px);
+}
+
 .love-answer-flower {
 
     font-size:
@@ -5138,20 +5164,24 @@ button {
 
                 <div class="love-answer-text">
 
-                    Apapun jawabannya
-                    aku senang kamu sampai ke sinii
+                    I would to...
 
                     <br>
 
-                    Dan kalau suatu hari nanti
-                    kita mengingat semuanya lagi,
+                    Even if takes thousand times, millions
 
                     <br>
 
-                    semoga yang kita ingat
-                    adalah hal-hal baiknya.
+                    I will fall in love with you over and over again
 
                 </div>
+
+                <button
+                    class="love-continue"
+                    id="loveContinueBtn"
+                >
+                    LANJUT
+                </button>
 
             </div>
 
@@ -5188,8 +5218,7 @@ button {
 
             <br>
 
-            kalau kamu ada waktu free kasih tahu ajaaa
-            santai aja :)
+            kalau kamu ada waktu free kasih tahu ajaaa :)
 
         </div>
 
@@ -5207,7 +5236,7 @@ button {
                 class="choice-btn no-btn"
                 id="noBtn"
             >
-                NEXT TIME 😭
+                NEXT TIME...
             </button>
 
         </div>
@@ -5231,7 +5260,8 @@ button {
 
                 <br>
 
-                kapan kamu sempat, kita gaskannn
+                kapan kamu sempat, kita gaskannn tapiiii....
+                kalau kamu lagi capek apalagi habis kuliah, kamu istirahat ajaaa okehh?
 
                 <br><br>
 
@@ -5261,7 +5291,7 @@ button {
         >
 
             <div class="choice-result-title">
-                Okeeehhh 😭
+                Okeeehhh
             </div>
 
             <div class="choice-result-text">
@@ -5273,11 +5303,11 @@ button {
                 Next time yaa,
                 kalau nanti ada waktu luang
                 dan kebetulan lagi pengen mabar
-                atau ngobrol.
+                atau ngobrol. infokan ke aku!!
 
                 <br><br>
 
-                Santai ajaa, no pressure :)
+                Aku bakal nunggu kok :)
 
             </div>
 
@@ -6594,6 +6624,11 @@ const loveAnswer =
         "loveAnswer"
     );
 
+const loveContinueBtn =
+    document.getElementById(
+        "loveContinueBtn"
+    );
+
 const mabarBox =
     document.getElementById(
         "mabarBox"
@@ -6654,32 +6689,42 @@ function revealMabar() {
             "show"
         );
 
+    loveContinueBtn
+        .classList
+        .add(
+            "show"
+        );
+
     createConfetti(
         45
     );
 
-
-    setTimeout(
-        function () {
-
-            mabarBox
-                .classList
-                .remove(
-                    "hidden"
-                );
-
-            mabarBox.scrollIntoView({
-                behavior:
-                    "smooth",
-                block:
-                    "center"
-            });
-
-        },
-        1300
-    );
-
 }
+
+
+/* =========================================================
+   CONTINUE TO MABAR
+========================================================= */
+
+loveContinueBtn.addEventListener(
+    "click",
+    function () {
+
+        mabarBox
+            .classList
+            .remove(
+                "hidden"
+            );
+
+        mabarBox.scrollIntoView({
+            behavior:
+                "smooth",
+            block:
+                "center"
+        });
+
+    }
+);
 
 
 /* =========================================================
@@ -6760,7 +6805,7 @@ const noWhatsapp =
 
 
 const yesMessage =
-`YESS 😭🎮
+`YESS🎮
 
 Okeh!!! kirim pesan di sini yaaaww
 ___________________________________
@@ -6775,12 +6820,24 @@ Happy birthday sekali lagi, Mel 🌷`;
 
 
 const noMessage =
-`Okeeehhh 😭
+`Okeeehhh
 
 Gak apa-apa kokkk, next timeee ajahhhh ingfokan ke akuuu
+kalau mau tulis pesan, ketik di bawah ini yaa
+_____________________________________________
 
-Amann ajaaa
 
+
+
+
+
+
+
+
+
+
+
+_________________________________________
 Happy birthday sekali lagi, Mel 🌷`;
 
 
@@ -6849,7 +6906,7 @@ noBtn.addEventListener(
             );
 
         noBtn.textContent =
-            "NEXT TIME YA 😭";
+            "NEXT TIME YA...";
 
         yesBtn.style.opacity =
             ".45";
